@@ -88,7 +88,7 @@ app.get("/", (req, res) => {
 
 // route to display landing page
 app.get("/landingPage", (req, res) => {
-    res.render("landingPage", {loggedIn : req.session.loggedIn});
+    res.render("index", {loggedIn : req.session.loggedIn});
 });
 
 // route to send contact information from the form on the home (/landingPage) and info pages
@@ -338,24 +338,18 @@ app.get("/data", async (req, res) => {
 // route to show only the selected survey results
 app.get("/datafiltered", async (req, res) => {
     try {
-        const surveynum = req.query.surveySelect;
+        const leadInterest = req.query.interest;
 
         // Fetch all survey data
-        const surveyData = await knex.select().from("user as u")
-            .join('survey as s', 'u.survey_number', '=', 's.survey_number')
-            .join('user_platform as up', 'u.survey_number', '=', 'up.survey_number')
-            .join('platform as p', 'up.platform_number', '=', 'p.platform_number')
-            .join('user_organization as uo', 'u.survey_number', '=', 'uo.survey_number')
-            .join('organization as o', 'uo.organization_number', '=', 'o.organization_number')
-            .where("u.survey_number", '=', surveynum);
+        const leadData = await knex.select().from("leads").where("leads.interest", '=', leadInterest);
 
         // Fetch distinct survey numbers (for dropdown)
-        const distinctSurveyNumbers = await knex('survey').distinct('survey_number').orderBy('survey_number');
-        const dropdownOptions = distinctSurveyNumbers.map(item => item.survey_number);
+        const distinctInterests = await knex('leads').distinct('interest').orderBy('interest');
+        const dropdownOptions = distinctInterests.map(item => item.interest);
 
         // Render the data.ejs template with the filtered survey data and dropdown options
         res.render("data", {
-            customers: surveyData,
+            customers: leadData,
             loggedIn: req.session.loggedIn,
             dropdownOptions: dropdownOptions
         });
