@@ -39,11 +39,9 @@
 </head>
 
 <body class="page-index">
-
   <!-- ======= Header ======= -->
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-
       <!-- <a href="index.html" class="logo d-flex align-items-center">
         Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/OverlyActive.png" alt=""> -->
@@ -51,65 +49,61 @@
           <img src="assets/img/OverlyActive.png" alt="logo" style="height: 100px;">
         </a>
         
-
-        <!-- <h1 class="d-flex align-items-center">Nova</h1> -->
-      
-
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="#" class="active">Home</a></li>
+          <li><a href="#">Home</a></li>
           <li><a href="login">Login</a></li>
           <li><a href="customer">Customer Form</a></li>
           <li><a href="portfolio.html">Dynamic Page</a></li>
           <li><a href="team.html">Meet the Team</a></li>
         </ul>
       </nav><!-- .navbar -->
-
     </div>
   </header><!-- End Header -->
-
-  <!--filter drop down by interest-->
-  <form action="/datafiltered" method="get" id="filterform" name="filterform" style="margin: 20px;">
-    <label for="interest"><b>Interest:</b></label>
-    <select id="interest" name="interest">
-        <option>Select an interest</option>
-        <% for (let iCount = 0; iCount < leads.length; iCount++) { %>
-            <option value="<%= leads[iCount].interest %>">
-            <%= leads[iCount].interest %>
-            </option>
-        <% } %>
-    </select>
-    <input type="submit" value="Submit">
-    <input type="button" value="Clear Selection" onclick="clearSelection()">
-</form>
-<div>
-  <table>
-    <thead>
-      <tr>
-        <th style="text-align: left;">First Name</th>
-        <th style="text-align: left;">Last Name</th>
-        <th style="text-align: left;">Phone</th>
-        <th style="text-align: left;">Email</th>
-        <th style="text-align: left;">Interest</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% for (let iCount = 0; iCount < leads.length; iCount++) { %>
+  <div class="space"></div>
+  <div>
+    <!--filter drop down by interest-->
+    <form action="/datafiltered" method="get" id="filterform" name="filterform" style="margin: 20px;">
+      <label for="interest"><b>Interest:</b></label>
+      <select id="interest" name="interest">
+          <option>Select an interest</option>
+          <% for (let iCount = 0; iCount < leads.length; iCount++) { %>
+              <option value="<%= leads[iCount].interest %>">
+              <%= leads[iCount].interest %>
+              </option>
+          <% } %>
+      </select>
+      <input type="submit" value="Submit">
+      <input type="button" value="Clear Selection" onclick="clearSelection()">
+    </form>
+  </div>
+  <div>
+    <table>
+      <thead>
         <tr>
-          <td><%= leads[iCount].first_name %></td>
-          <td><%= leads[iCount].last_name %></td>
-          <td><%= leads[iCount].phone %></td>
-          <td><%= leads[iCount].email %></td>
-          <td><%= leads[iCount].interest %></td>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>Interest</th>
         </tr>
-      <% } %>
- </tbody>
-</table>
-</div>
-<br><br>
+      </thead>
+      <tbody>
+        <% for (let iCount = 0; iCount < leads.length; iCount++) { %>
+          <tr>
+            <td><%= leads[iCount].first_name %></td>
+            <td><%= leads[iCount].last_name %></td>
+            <td><%= leads[iCount].phone %></td>
+            <td><%= leads[iCount].email %></td>
+            <td><%= leads[iCount].interest %></td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+  <br><br>
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
 
