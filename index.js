@@ -374,6 +374,7 @@ app.get("/ourteam", (req,res) => {
     res.render('ourteam')
 })
 
+
 app.post("/customer")
 
 app.listen(port, () => console.log("Server is running"));
