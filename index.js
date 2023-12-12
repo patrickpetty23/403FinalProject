@@ -16,7 +16,7 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
-app.use(session({ secret: 'BananaPancakes', resave: false, saveUninitialized: true }));
+app.use(session({ secret: 'ThisIsAPassword', resave: false, saveUninitialized: true }));
 app.use(express.static('public'));
 
 // Connect to postgres database
@@ -26,7 +26,7 @@ const knex = require("knex")({
         host : process.env.RDS_HOSTNAME || "localhost",
         user : process.env.RDS_USERNAME || "postgres",
         password : process.env.RDS_PASSWORD || "admin",
-        database : process.env.RDS_DB_NAME || "intex",
+        database : process.env.RDS_DB_NAME || "final_project",
         port : process.env.RDS_PORT || 5432,
         ssl: process.env.DB_SSL ? {rejectUnauthorized: false} : false
     }
