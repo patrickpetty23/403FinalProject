@@ -82,13 +82,13 @@ app.post('/create', async (req, res) => {
 
 // default rout to display landing page
 app.get("/", (req, res) => {
-    res.render("landingPage", {loggedIn : req.session.loggedIn});
+    res.render("index", {loggedIn : req.session.loggedIn});
 
 });
 
 // route to display landing page
 app.get("/landingPage", (req, res) => {
-    res.render("landingPage", {loggedIn : req.session.loggedIn});
+    res.render("index", {loggedIn : req.session.loggedIn});
 });
 
 // route to send contact information from the form on the home (/landingPage) and info pages
