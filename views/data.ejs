@@ -66,9 +66,9 @@
   <br>
     <!--filter drop down by interest-->
     <form action="/datafiltered" method="get" id="filterform" name="filterform" style="margin: 20px;">
-        <label for="interest_group"><b>Interest:</b></label>
-        <select id="interest_group" name="interest_group">
-            <option>Select an interest group</option>
+        <label for="interest"><b>Interest:</b></label>
+        <select id="interest" name="interest">
+            <option>Select an interest</option>
             <% for (let iCount = 0; iCount < customers.length; iCount++) { %>
                 <option value="<%= customers[iCount].interest %>">
                 Interest <%= customers[iCount].interest %>

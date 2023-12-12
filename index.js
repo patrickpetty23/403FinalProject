@@ -319,7 +319,7 @@ app.post("/updateuser", (req, res) => {
   });
 
 // route to render data.ejs with a table of all the surveys submitted
-app.get("/data", checkLoggedIn, async (req, res) => {
+app.get("/data", async (req, res) => {
     try {
         // Fetch all customer data
         const leadsData = await knex.select().from("leads")
@@ -331,7 +331,7 @@ app.get("/data", checkLoggedIn, async (req, res) => {
         });
     } catch (error) {
         console.error('Error fetching customer data:', error);
-        res.status(500).send('Internal Server Error');
+        res.send('Internal Server Error (Likely the database not communicating with the server)');
     }
 });
 
