@@ -82,7 +82,7 @@ app.post('/create', async (req, res) => {
 
 // default rout to display landing page
 app.get("/", (req, res) => {
-    res.render("landingPage", {loggedIn : req.session.loggedIn});
+    res.render("index", {loggedIn : req.session.loggedIn});
 
 });
 
@@ -321,28 +321,16 @@ app.post("/updateuser", (req, res) => {
 // route to render data.ejs with a table of all the surveys submitted
 app.get("/data", checkLoggedIn, async (req, res) => {
     try {
-        // Fetch all survey data
-        const surveyData = await knex.select().from("user as u")
-            .join('survey as s', 'u.survey_number', '=', 's.survey_number')
-            .join('user_platform as up', 'u.survey_number', '=', 'up.survey_number')
-            .join('platform as p', 'up.platform_number', '=', 'p.platform_number')
-            .join('user_organization as uo', 'u.survey_number', '=', 'uo.survey_number')
-            .join('organization as o', 'uo.organization_number', '=', 'o.organization_number');
+        // Fetch all customer data
+        const leadsData = await knex.select().from("leads")
 
-        // Fetch distinct survey numbers
-        const distinctSurveyNumbers = await knex('survey').distinct('survey_number').orderBy('survey_number');
-
-        // Extract the unique survey numbers from the result
-        const dropdownOptions = distinctSurveyNumbers.map(item => item.survey_number);
-
-        // Render the data.ejs template with the survey data and dropdown options
+        // Render the data.ejs template with the customer data
         res.render("data", {
-            mysurvey: surveyData,
-            loggedIn: req.session.loggedIn,
-            dropdownOptions: dropdownOptions
+            customers: leadsData,
+            loggedIn: req.session.loggedIn
         });
     } catch (error) {
-        console.error('Error fetching survey data:', error);
+        console.error('Error fetching customer data:', error);
         res.status(500).send('Internal Server Error');
     }
 });
@@ -367,7 +355,7 @@ app.get("/datafiltered", async (req, res) => {
 
         // Render the data.ejs template with the filtered survey data and dropdown options
         res.render("data", {
-            mysurvey: surveyData,
+            customers: surveyData,
             loggedIn: req.session.loggedIn,
             dropdownOptions: dropdownOptions
         });
