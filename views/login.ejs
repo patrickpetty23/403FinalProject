@@ -1,9 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Login</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon"> 
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Nova
+  * Updated: Sep 18 2023 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/nova-bootstrap-business-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body class="page-index">
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+      <!-- <a href="index.html" class="logo d-flex align-items-center">
+        Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/OverlyActive.png" alt=""> -->
+        <a href="index.html" class="logo d-flex align-items-center">
+          <img src="" alt="" style="height: 100px;">
+        </a>
+        
+
+        <!-- <h1 class="d-flex align-items-center">Nova</h1> -->
+      
+
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="/" style="color: black">Home</a></li>
+          <li><a href="#" style="color: black">Login</a></li>
+          <li><a href="services.html" style="color: black">Customer Form</a></li>
+          <li><a href="portfolio.html" style="color: black">Dynamic Page</a></li>
+          <li><a href="team.html" style="color: black">Meet the Team</a></li>
+        </ul>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header>
+  <!-- End Header -->
+  
+  <div class="space"></div>
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -53,45 +123,76 @@
             border-radius: 3px;
             cursor: pointer;
         }
+        .logout-link {
+            display: inline-block;
+            padding: 10px;
+            margin-top: 10px;
+            text-decoration: none;
+            border-radius: 5px;
+            padding: 10px 28px;
+            border-radius: 4px;
+            transition: 0.5s;
+            color: #fff;
+            background:  rgb(77,169,196);
+            border: none;
+        }
+        .logout-link2 {
+            font-size: 12px;
+            display: inline-block;
+            padding: 5px;
+            margin-top: 10px;
+            text-decoration: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            border-radius: 4px;
+            transition: 0.5s;
+            color: #fff;
+            background:  rgb(77,169,196);
+            border: none;
+            }
+        .space 
+            { margin-top: 200px; 
+            }
     </style>
     
 </head>
 <body>
-
-    <div class="login-container">
-        <img src="assets/img/OverlyActive.png" alt="Logo">
-        <h2>Login</h2>
-        <form action="login" method="post">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-
-            <button type="button" onclick="login()">Login</button>
-            <input type="submit" value="Login">
-        </form>
-    </div>
-  
-    <script>
-        function login() {
-            // Get input values
-            var username = document.getElementById("username").value;
-            var password = document.getElementById("password").value;
-
-            // Replace this with your actual database check (server-side validation is recommended)
-            // For simplicity, using hardcoded values here
-            var validUsernames = ["user1", "user2"];
-            var validPasswords = ["password1", "password2"];
-
-            // Check if the entered username and password are valid
-            if (validUsernames.includes(username) && validPasswords.includes(password)) {
-                alert("Login successful! Redirecting to the website...");
-                // Add code here to redirect to the main website
-            } else {
-                alert("Invalid username or password. Please try again.");
+    <body>
+        <% if (loginMessage) { %>
+            <script>
+                alert('<%= loginMessage %>');
+            </script>
+        <% } %>    
+        <div class="login-container">
+            <img src="assets/img/OverlyActive.png" alt="Logo">
+            <h2>Login</h2>
+            <form action="/login" method="post">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+    
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+    
+                <input type="submit" value="Submit" class="logout-link">
+                <a href="#" onclick="logOut();" class="logout-link2">Log Out</a>
+            </form>
+        </div>
+        
+        <script>
+            function logOut()
+            {
+                window.location.href = '/logout';      
             }
-        }
+            function create()
+            {
+                window.location.href = '/create';      
+            }
+            function alertMessage()
+            {
+                if (loginMessage) {
+                    alert('<%= loginMessage %>')
+                }
+            }
     </script>
-</body>
-</html>
+    </body>
+    </html>
