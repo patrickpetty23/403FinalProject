@@ -1,0 +1,1 @@
+sudo certbot -n -d 403final.piercew.com --nginx --agree-tos --email nathanmoore101@gmail.com
