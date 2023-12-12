@@ -318,15 +318,15 @@ app.post("/updateuser", (req, res) => {
         });
   });
 
-// route to render data.ejs with a table of all the surveys submitted
+// route to render data.ejs with a table of all the customer leads submitted
 app.get("/data", async (req, res) => {
     try {
         // Fetch all customer data
-        const leadsData = await knex.select().from("leads")
+        const leadData = await knex.select().from("leads");
 
         // Render the data.ejs template with the customer data
         res.render("data", {
-            customers: leadsData,
+            leads: leadData,
             loggedIn: req.session.loggedIn
         });
     } catch (error) {
@@ -339,17 +339,24 @@ app.get("/data", async (req, res) => {
 app.get("/datafiltered", async (req, res) => {
     try {
         const leadInterest = req.query.interest;
-
-        // Fetch all survey data
-        const leadData = await knex.select().from("leads").where("leads.interest", '=', leadInterest);
-
+        
         // Fetch distinct survey numbers (for dropdown)
         const distinctInterests = await knex('leads').distinct('interest').orderBy('interest');
+
+        // Extract unique interests from the result
         const dropdownOptions = distinctInterests.map(item => item.interest);
+
+        // Fetch all survey data
+        let leadData;
+        if (leadInterest) {
+            leadData = await knex.select().from("leads").where("leads.interest", '=', leadInterest);
+        } else {
+            leadData = await knex.select().from("leads");
+        }
 
         // Render the data.ejs template with the filtered survey data and dropdown options
         res.render("data", {
-            customers: leadData,
+            leads: leadData,
             loggedIn: req.session.loggedIn,
             dropdownOptions: dropdownOptions
         });
