@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Data</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/FavConFinal.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <style>
+
+  </style>
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: BizLand
+  * Updated: Sep 18 2023 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/bizland-bootstrap-business-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+<body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="d-flex align-items-center">
+      <div class="container d-flex align-items-center justify-content-between">
+  
+        <h1 class="logo"><a href="landingPage">Social Media & Mental Health<span>.</span></a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt=""></a>-->
+  
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a href="/landingPage">Home</a></li>
+            <li><a href="/info">Info</a></li>
+            <li><a href="/survey">Survey</a></li>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/data">Data</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/account">Account</a></li>
+          </ul>
+          <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+  
+      </div>
+    </header>
+    <!-- End Header -->
+
+  <br>
+    <!--filter drop down by interest-->
+    <form action="/datafiltered" method="get" id="filterform" name="filterform" style="margin: 20px;">
+        <label for="interest_group"><b>Interest:</b></label>
+        <select id="interest_group" name="interest_group">
+            <option>Select an interest group</option>
+            <% for (let iCount = 0; iCount < mycustomers.length; iCount++) { %>
+                <option value="<%= mycustomers[iCount].interest %>">
+                Interest <%= mycustomers[iCount].interest %>
+                </option>
+            <% } %>
+        </select>
+        <input type="submit" value="Submit">
+        <input type="button" value="Clear Selection" onclick="clearSelection()">
+    </form>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th style="text-align: left;">First Name</th>
+            <th style="text-align: left;">Last Name</th>
+            <th style="text-align: left;">Phone</th>
+            <th style="text-align: left;">Email</th>
+            <th style="text-align: left;">Interest</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for (let iCount = 0; iCount < mycustomers.length; iCount++) { %>
+            <tr>
+              <td><%= mycustomers[iCount].first_name %></td>
+              <td><%= mycustomers[iCount].last_name %></td>
+              <td><%= mycustomers[iCount].phone %></td>
+              <td><%= mycustomers[iCount].email %></td>
+              <td><%= mycustomers[iCount].interest %></td>
+            </tr>
+          <% } %>
+     </tbody>
+   </table>
+   </div>
+   <br><br>
+   <script>
+        function clearSelection() {
+            // Redirect to /data route
+            window.location.href = '/data';
+        }
+    </script>
+</body>
+</html>
