@@ -366,4 +366,10 @@ app.get("/datafiltered", async (req, res) => {
     }
 });
 
+app.get("/customer", (req,res) => {
+    res.render('customer')
+})
+
+app.post("/customer")
+
 app.listen(port, () => console.log("Server is running"));
