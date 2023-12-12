@@ -370,8 +370,8 @@ app.get("/customer", (req,res) => {
     res.render('customer')
 })
 
-app.get("/OurTeam", (req,res) => {
-    res.render('OurTeam')
+app.get("/ourteam", (req,res) => {
+    res.render('ourteam')
 })
 
 app.post("/customer")
