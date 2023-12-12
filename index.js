@@ -318,56 +318,45 @@ app.post("/updateuser", (req, res) => {
         });
   });
 
-// route to render data.ejs with a table of all the surveys submitted
-app.get("/data", checkLoggedIn, async (req, res) => {
+// route to render data.ejs with a table of all the customer leads submitted
+app.get("/data", async (req, res) => {
     try {
-        // Fetch all survey data
-        const surveyData = await knex.select().from("user as u")
-            .join('survey as s', 'u.survey_number', '=', 's.survey_number')
-            .join('user_platform as up', 'u.survey_number', '=', 'up.survey_number')
-            .join('platform as p', 'up.platform_number', '=', 'p.platform_number')
-            .join('user_organization as uo', 'u.survey_number', '=', 'uo.survey_number')
-            .join('organization as o', 'uo.organization_number', '=', 'o.organization_number');
+        // Fetch all customer data
+        const leadData = await knex.select().from("leads");
 
-        // Fetch distinct survey numbers
-        const distinctSurveyNumbers = await knex('survey').distinct('survey_number').orderBy('survey_number');
-
-        // Extract the unique survey numbers from the result
-        const dropdownOptions = distinctSurveyNumbers.map(item => item.survey_number);
-
-        // Render the data.ejs template with the survey data and dropdown options
+        // Render the data.ejs template with the customer data
         res.render("data", {
-            mysurvey: surveyData,
-            loggedIn: req.session.loggedIn,
-            dropdownOptions: dropdownOptions
+            leads: leadData,
+            loggedIn: req.session.loggedIn
         });
     } catch (error) {
-        console.error('Error fetching survey data:', error);
-        res.status(500).send('Internal Server Error');
+        console.error('Error fetching customer data:', error);
+        res.send('Internal Server Error (Likely the database not communicating with the server)');
     }
 });
 
 // route to show only the selected survey results
 app.get("/datafiltered", async (req, res) => {
     try {
-        const surveynum = req.query.surveySelect;
+        const leadInterest = req.query.interest;
+        
+        // Fetch distinct survey numbers (for dropdown)
+        const distinctInterests = await knex('leads').distinct('interest').orderBy('interest');
+
+        // Extract unique interests from the result
+        const dropdownOptions = distinctInterests.map(item => item.interest);
 
         // Fetch all survey data
-        const surveyData = await knex.select().from("user as u")
-            .join('survey as s', 'u.survey_number', '=', 's.survey_number')
-            .join('user_platform as up', 'u.survey_number', '=', 'up.survey_number')
-            .join('platform as p', 'up.platform_number', '=', 'p.platform_number')
-            .join('user_organization as uo', 'u.survey_number', '=', 'uo.survey_number')
-            .join('organization as o', 'uo.organization_number', '=', 'o.organization_number')
-            .where("u.survey_number", '=', surveynum);
-
-        // Fetch distinct survey numbers (for dropdown)
-        const distinctSurveyNumbers = await knex('survey').distinct('survey_number').orderBy('survey_number');
-        const dropdownOptions = distinctSurveyNumbers.map(item => item.survey_number);
+        let leadData;
+        if (leadInterest) {
+            leadData = await knex.select().from("leads").where("leads.interest", '=', leadInterest);
+        } else {
+            leadData = await knex.select().from("leads");
+        }
 
         // Render the data.ejs template with the filtered survey data and dropdown options
         res.render("data", {
-            mysurvey: surveyData,
+            leads: leadData,
             loggedIn: req.session.loggedIn,
             dropdownOptions: dropdownOptions
         });
@@ -376,5 +365,11 @@ app.get("/datafiltered", async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
+
+app.get("/customer", (req,res) => {
+    res.render('customer')
+})
+
+app.post("/customer")
 
 app.listen(port, () => console.log("Server is running"));

@@ -156,43 +156,20 @@
     </style>
     
 </head>
-<body>
-    <body>
-        <% if (loginMessage) { %>
-            <script>
-                alert('<%= loginMessage %>');
-            </script>
-        <% } %>    
-        <div class="login-container">
-            <img src="assets/img/OverlyActive.png" alt="Logo">
-            <h2>Login</h2>
-            <form action="/login" method="post">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-    
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-    
-                <input type="submit" value="Submit" class="logout-link">
-                <a href="#" onclick="logOut();" class="logout-link2">Log Out</a>
-            </form>
-        </div>
-        
-        <script>
-            function logOut()
-            {
-                window.location.href = '/logout';      
-            }
-            function create()
-            {
-                window.location.href = '/create';      
-            }
-            function alertMessage()
-            {
-                if (loginMessage) {
-                    alert('<%= loginMessage %>')
-                }
-            }
-    </script>
-    </body>
-    </html>
+<body> 
+    <div class="login-container">
+        <img src="assets/img/OverlyActive.png" alt="Logo">
+        <h2>Login</h2>
+        <form action="/login" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <input type="submit" value="Submit" class="logout-link">
+            <a href="#" onclick="logOut();" class="logout-link2">Log Out</a>
+        </form>
+    </div>
+</body>
+</html>
