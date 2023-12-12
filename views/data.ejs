@@ -5,13 +5,13 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Data</title>
+  <title>Customer Leads</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/FavConFinal.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="/assets/img/FavConFinal.png" rel="icon">
+  <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -66,12 +66,12 @@
   <br>
     <!--filter drop down by interest-->
     <form action="/datafiltered" method="get" id="filterform" name="filterform" style="margin: 20px;">
-        <label for="interest_group"><b>Interest:</b></label>
-        <select id="interest_group" name="interest_group">
-            <option>Select an interest group</option>
-            <% for (let iCount = 0; iCount < mycustomers.length; iCount++) { %>
-                <option value="<%= mycustomers[iCount].interest %>">
-                Interest <%= mycustomers[iCount].interest %>
+        <label for="interest"><b>Interest:</b></label>
+        <select id="interest" name="interest">
+            <option>Select an interest</option>
+            <% for (let iCount = 0; iCount < leads.length; iCount++) { %>
+                <option value="<%= leads[iCount].interest %>">
+                <%= leads[iCount].interest %>
                 </option>
             <% } %>
         </select>
@@ -90,13 +90,13 @@
           </tr>
         </thead>
         <tbody>
-          <% for (let iCount = 0; iCount < mycustomers.length; iCount++) { %>
+          <% for (let iCount = 0; iCount < leads.length; iCount++) { %>
             <tr>
-              <td><%= mycustomers[iCount].first_name %></td>
-              <td><%= mycustomers[iCount].last_name %></td>
-              <td><%= mycustomers[iCount].phone %></td>
-              <td><%= mycustomers[iCount].email %></td>
-              <td><%= mycustomers[iCount].interest %></td>
+              <td><%= leads[iCount].first_name %></td>
+              <td><%= leads[iCount].last_name %></td>
+              <td><%= leads[iCount].phone %></td>
+              <td><%= leads[iCount].email %></td>
+              <td><%= leads[iCount].interest %></td>
             </tr>
           <% } %>
      </tbody>
