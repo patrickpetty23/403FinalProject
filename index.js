@@ -104,7 +104,11 @@ app.post("/contact", (req, res) => {
 
 // route to display info.ejs
 app.get("/info", (req,res) => {
-    res.render("info", {loggedIn: req.session.loggedIn});
+    const interest_selected = req.body.interest;
+    const interest_display = knex('interests').select().where('interest', '=', interest_selected);
+    const events = knex('events').select().where('interest', '=', interest_selected); 
+
+    res.render("info", {loggedIn: req.session.loggedIn, interest_display: interest_display, events: events});
 });
 
 // route to dispaly survey
@@ -319,7 +323,7 @@ app.post("/updateuser", (req, res) => {
   });
 
 // route to render data.ejs with a table of all the customer leads submitted
-app.get("/data", async (req, res) => {
+app.get("/data", checkLoggedIn, async (req, res) => {
     try {
         // Fetch all customer data
         const leadData = await knex.select().from("leads");
