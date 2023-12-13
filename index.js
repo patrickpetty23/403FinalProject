@@ -106,7 +106,7 @@ app.post("/contact", (req, res) => {
 app.get("/services", async (req,res) => {
     try {
         let selected_interest = null;
-        let photo = null;
+        let interests = null;
         let events = null;
         if (req.query.interest) {
             selected_interest = req.query.interest;
