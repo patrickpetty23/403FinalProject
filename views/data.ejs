@@ -46,7 +46,7 @@
         Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/OverlyActive.png" alt=""> -->
         <a href="index.html" class="logo d-flex align-items-center">
-          <img src="assets/img/OverlyActive.png" alt="logo" style="height: 100px;">
+          <img src="assets/img/OverlyActive.png" alt="logo" style="height: 65px;">
         </a>
         
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
@@ -66,7 +66,7 @@
   <div>
     <!--filter drop down by interest-->
     <form action="/datafiltered" method="get" id="filterform" name="filterform" style="margin: 20px;">
-      <label for="interest"><b>Interest:</b></label>
+      <label for="interest" style="color: white;"><b>Interest:</b></label>
       <select id="interest" name="interest">
           <option>Select an interest</option>
           <% for (let iCount = 0; iCount < leads.length; iCount++) { %>
@@ -75,8 +75,8 @@
               </option>
           <% } %>
       </select>
-      <input type="submit" value="Submit">
-      <input type="button" value="Clear Selection" onclick="clearSelection()">
+      <input type="submit" class="logout-link submit-button" value="Submit">
+      <input type="button" class="logout-link clear-button" value="Clear Selection" onclick="clearSelection()">
     </form>
   </div>
   <div>
@@ -114,7 +114,7 @@
             <a href="index.html" class="logo d-flex align-items-center">
               <span>OverlyMusical</span>
             </a>
-            <p>Here at OverlyMusical, LLC where we believe music can enhance overall health and wellness, improve quality of life, and help people achieve their non-musical goals. 
+            <p>Here at OverlyMusical, LLC we believe music can enhance overall health and wellness, improve quality of life, and help people achieve their non-musical goals. 
               OverlyMusical, LLC mission statement: To add value to individuals, organizations and facilities through musical connection.</p>
             <div class="social-links d-flex  mt-3">
               <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
@@ -129,7 +129,6 @@
                 <li><i class="bi bi-dash"></i> <a href="#">Home</a></li>
                 <li><i class="bi bi-dash"></i> <a href="#">Meet the team</a></li>
                 <li><i class="bi bi-dash"></i> <a href="#">Our Youtube Page</a></li>
-                <li><i class="bi bi-dash"></i> <a href="#">Terms of service</a></li>
               </ul>
             </div>
 
