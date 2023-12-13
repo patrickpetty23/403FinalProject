@@ -104,11 +104,12 @@ app.post("/contact", (req, res) => {
 
 // route to display info.ejs
 app.get("/info", (req,res) => {
-    const interest_selected = req.body.interest;
-    const interest_display = knex('interests').select().where('interest', '=', interest_selected);
-    const events = knex('events').select().where('interest', '=', interest_selected); 
+    let selected_interest = null;
+    selected_interest = req.body.interest;
+    const interest_display = knex('interests').select().where('interest', '=', selected_interest);
+    const events = knex('events').select().where('interest', '=', selected_interest); 
 
-    res.render("info", {loggedIn: req.session.loggedIn, interest_display: interest_display, events: events});
+    res.render("info", {loggedIn: req.session.loggedIn, interest_display: interest_display, events: events, selected_interest: selected_interest});
 });
 
 // route to dispaly survey
