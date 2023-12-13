@@ -120,7 +120,7 @@ app.get("/services", async (req,res) => {
             } else if (selected_interest == "specialneeds") {
                 interest_id = 4;
             } else {
-                res.send("it didn't work");
+                res.send("It didn't work");
             }
             console.log("selected_interest: ", selected_interest);
             console.log("interest_id: ", interest_id);
