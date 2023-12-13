@@ -2292,3 +2292,9 @@ tbody tr:nth-child(even) {
 tbody tr:hover {
   background-color: #e2e6ea;
 }
+
+.submit-button, .clear-button {
+  margin-top: 5px;
+  margin-left: 5px;
+  padding: 2px 8px;
+}
