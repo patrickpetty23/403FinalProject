@@ -63,18 +63,26 @@
                 <%if (selected_interest == null) {%>
                     <h1>What are you looking for?</h1>
                     <div class="grid-container">
-                        <div class="grid-item" style="background-image: url(assets/img/children.jpg);">
-                            <h3>Children</h3>
-                        </div>
-                        <div class="grid-item" style="background-image: url(assets/img/youth.jpg);">
-                            <h3>Youth</h3>
-                        </div>
-                        <div class="grid-item" style="background-image: url(assets/img/adults.jpg);">
-                            <h3>Adults</h3>
-                        </div>
-                        <div class="grid-item" style="background-image: url(assets/img/seniors.jpg);">
-                            <h3>Seniors</h3>
-                        </div>
+                        <a href="/services?interest=youngchildren">
+                            <div class="grid-item" style="background-image: url(assets/img/children.jpg);">
+                                <h3>Young Children</h3>
+                            </div>
+                        </a>
+                        <a href="/services?interest=youth">
+                            <div class="grid-item" style="background-image: url(assets/img/youth.jpg);">
+                                <h3>Youth</h3>
+                            </div>
+                        </a>
+                        <a href="/services?interest=elderly">
+                            <div class="grid-item" style="background-image: url(assets/img/elderly.jpg);">
+                                <h3>Elderly</h3>
+                            </div>
+                        </a>
+                        <a href="/services?interest=specialneeds">
+                            <div class="grid-item" style="background-image: url(assets/img/specialneeds.jpg);">
+                                <h3>Special Needs</h3>
+                            </div>
+                        </a>
                     </div>
                 <%} else {%>
                     <h1><%=interest_display.interest.toUpper()%></h1><br><br>

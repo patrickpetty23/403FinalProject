@@ -102,15 +102,30 @@ app.post("/contact", (req, res) => {
     res.send('Form submission successful!');
 });
 
-// route to display info.ejs
-app.get("/info", (req,res) => {
+// route to display services.ejs
+app.get("/services", (req,res) => {
     let selected_interest = null;
-    selected_interest = req.body.interest;
-    const interest_display = knex('interests').select().where('interest', '=', selected_interest);
-    const events = knex('events').select().where('interest', '=', selected_interest); 
 
-    res.render("info", {loggedIn: req.session.loggedIn, interest_display: interest_display, events: events, selected_interest: selected_interest});
+    res.render("services", {loggedIn: req.session.loggedIn, selected_interest: selected_interest});
 });
+
+// route to display services/interest
+app.get("/services/:interest", async (req, res) => {
+    try {
+        let selected_interest = req.params.interest;
+        console.log("selected_interest: ", selected_interest);
+        // Use async/await to wait for the queries to complete
+        const interest_display = await knex('interests').select().where('interest', '=', selected_interest);
+        const events = await knex('events').select().where('interest', '=', selected_interest);
+
+        // Render the "services" template with the retrieved data
+        res.render("services", { loggedIn: req.session.loggedIn, interest_display: interest_display, events: events, selected_interest: selected_interest });
+    } catch (error) {
+        console.error('Error executing the queries:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
 
 // route to dispaly survey
 app.get("/survey", (req, res) => {
