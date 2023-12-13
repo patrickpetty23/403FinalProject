@@ -62,17 +62,9 @@
             <div style="background-color: white; padding: 60px; box-sizing: border-box; text-align: center;">
                 <h1 style="text-decoration: underline;"><%=interest.interest%></h1><br><br>
                 <img src="assets/img/<%=interest.photo%>.jpg" alt="<%=interest.photo_description%>" style="width: 50%; height: auto; display: block; margin: 0 auto;"><br><br><br>
-                <div style="position: absolute; top: 35%; left: 50%; transform: translate(-50%, -50%); background-color: transparent;">
-                    <h1 style="font-weight: bold; margin: 0; color: white;">Youth</h1>
-                </div>
+                <%for (let iCount=0; iCount<events.length; iCount++) {%>
                 <h4><%=events[iCount].title%></h4><br>
-                <p>Currently, we provide personalized 1:1 beginner guitar, piano, and intermediate flute lessons for all ages. Our dynamic curriculum caters
-                    to diverse musical education, offering both group and private sessions to ensure a tailored learning experience. Join us on a
-                    transformative musical journey today.</p><br><br>
-                <h4>Group Guitar</h4><br>
-                <p>Group Guitar Classes are taught at Smithfield Rec. Center and North Logan Hansen’s Sport Complex in the evenings. Group guitar class is an
-                    affordable and fun way to learn how to play the guitar. Summer Classes will be offered in the evening and the day. There are three
-                    difficulty levels so guitar players of all skills are welcome to come and learn.</p>
+                <p><%=events[iCount].description }%></p><br><br>
             </div>
         </div>
         <!-- ======= End Content Section ======= -->
