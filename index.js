@@ -102,9 +102,9 @@ app.post("/contact", (req, res) => {
     res.send('Form submission successful!');
 });
 
-// route to display info.ejs
-app.get("/info", (req,res) => {
-    res.render("info", {loggedIn: req.session.loggedIn});
+// route to display services.ejs
+app.get("/services", (req,res) => {
+    res.render("services", {loggedIn: req.session.loggedIn});
 });
 
 // route to dispaly survey
