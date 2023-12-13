@@ -191,7 +191,7 @@ app.get("/logout", (req, res) => {
         if (err) {
             console.error('Error destroying session:', err);
         }
-        res.redirect("/landingPage");
+        res.redirect("/");
     })
 });
 
@@ -368,47 +368,50 @@ app.get("/data", checkLoggedIn, async (req, res) => {
     }
 });
 
+
+//DO WE NEED THIS ROUTE? ALL CAPS FOR EMPHASIS NOT BC I'M YELLING
 // route to show only the selected survey results
-app.get("/datafiltered", async (req, res) => {
-    try {
-        const leadInterest = req.query.interest;
+// app.get("/datafiltered", async (req, res) => {
+//     try {
+//         const leadInterest = req.query.interest;
         
-        // Fetch distinct survey numbers (for dropdown)
-        const distinctInterests = await knex('leads').distinct('interest').orderBy('interest');
+//         // Fetch distinct survey numbers (for dropdown)
+//         const distinctInterests = await knex('leads').distinct('interest').orderBy('interest');
 
-        // Extract unique interests from the result
-        const dropdownOptions = distinctInterests.map(item => item.interest);
+//         // Extract unique interests from the result
+//         const dropdownOptions = distinctInterests.map(item => item.interest);
 
-        // Fetch all survey data
-        let leadData;
-        if (leadInterest) {
-            leadData = await knex.select().from("leads").where("leads.interest", '=', leadInterest);
-        } else {
-            leadData = await knex.select().from("leads");
-        }
+//         // Fetch all survey data
+//         let leadData;
+//         if (leadInterest) {
+//             leadData = await knex.select().from("leads").where("leads.interest", '=', leadInterest);
+//         } else {
+//             leadData = await knex.select().from("leads");
+//         }
 
-        // Render the data.ejs template with the filtered survey data and dropdown options
-        res.render("data", {
-            leads: leadData,
-            loggedIn: req.session.loggedIn,
-            dropdownOptions: dropdownOptions
-        });
-    } catch (error) {
-        console.error('Error executing the query:', error);
-        res.status(500).send('Internal Server Error');
-    }
-});
+//         // Render the data.ejs template with the filtered survey data and dropdown options
+//         res.render("data", {
+//             leads: leadData,
+//             loggedIn: req.session.loggedIn,
+//             dropdownOptions: dropdownOptions
+//         });
+//     } catch (error) {
+//         console.error('Error executing the query:', error);
+//         res.status(500).send('Internal Server Error');
+//     }
+// });
 
 // app.get("/customer", (req,res) => {
 //     res.render('customer')
 // })
 
 app.get("/ourteam", (req,res) => {
-    res.render('ourteam')
+    res.render('ourteam', {loggedIn: req.session.loggedIn})
 })
 
 
-app.post("/customer", (req, res) => {
+app.post("/addcustomer", (req, res) => {
+
 
     res.redirect('/services')
 })
