@@ -50,23 +50,19 @@
         <a href="index.html" class="logo d-flex align-items-center">
           <img src="" alt="" style="height: 100px;">
         </a>
-        
-
-        <!-- <h1 class="d-flex align-items-center">Nova</h1> -->
       
-
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
 
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="/" style="color: black">Home</a></li>
-          <li><a href="#" style="color: black">Login</a></li>
-          <li><a href="services.html" style="color: black">Customer Form</a></li>
-          <li><a href="portfolio.html" style="color: black">Dynamic Page</a></li>
-          <li><a href="team.html" style="color: black">Meet the Team</a></li>
+          <li><a href="/login" style="color: black">Login</a></li>
+          <li><a href="#" style="color: black">Customer Form</a></li>
+          <li><a href="" style="color: black">Dynamic Page</a></li>
+          <li><a href="/OurTeam" style="color: black">Meet the Team</a></li>
         </ul>
-      </nav><!-- .navbar -->
+      </nav>
 
     </div>
   </header>
@@ -84,7 +80,7 @@
         }
 
         .login-container {
-            max-width: 300px;
+            max-width: 50%; /* Set the max-width to take up half of the page */
             margin: 100px auto;
             background-color: #fff;
             padding: 20px;
@@ -106,10 +102,11 @@
             display: block;
             text-align: left;
             margin-bottom: 8px;
+            padding-left: 17%;
         }
 
         .login-container input {
-            width: 100%;
+            width: 66.66%;
             padding: 8px;
             margin-bottom: 16px;
             box-sizing: border-box;
@@ -135,6 +132,7 @@
             color: #fff;
             background:  rgb(77,169,196);
             border: none;
+            width: auto;
         }
         .logout-link2 {
             font-size: 12px;
@@ -159,16 +157,23 @@
 <body> 
     <div class="login-container">
         <img src="assets/img/OverlyActive.png" alt="Logo">
-        <h2>Login</h2>
-        <form action="/login" method="post">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
+        <h2>Enter Customer Info</h2>
+        <form action="/customer" method="post">
+            <label for="firstname">First Name: <span style="color: red;">*</span></label>
+            <input type="text" id="firstname" name="firstname" required>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
 
-            <input type="submit" value="Submit" class="logout-link">
-            <a href="#" onclick="logOut();" class="logout-link2">Log Out</a>
+            <label for="lastname">Last Name: <span style="color: red;">*</span></label>
+            <input type="text" id="lastname" name="lastname" required>
+
+            <label for="email">Email: <span style="color: red;">*</span></label>
+            <input type="text" id="email" name="email" required>
+
+            <label for="phone">Phone Number: <span style="color: red;">*</span></label>
+            <input type="text" id="phone" name="phone" required><br>
+
+            
+            <input type="submit" value="Submit" class="logout-link" style="width: 25%;">
         </form>
     </div>
 </body>
