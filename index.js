@@ -135,23 +135,6 @@ app.get("/services", async (req,res) => {
     }
 });
 
-// // route to display services/interest
-// app.get("/services/:interest", async (req, res) => {
-//     try {
-//         const selected_interest = req.params.interest;
-//         console.log("selected_interest: ", selected_interest);
-//         // Use async/await to wait for the queries to complete
-//         const interest_display = await knex('interests').select().where('interest', '=', selected_interest);
-//         const events = await knex('events').select().where('interest', '=', selected_interest);
-
-//         // Render the "services" template with the retrieved data
-//         res.render("services", { loggedIn: req.session.loggedIn, interest_display: interest_display, events: events, selected_interest: selected_interest });
-//     } catch (error) {
-//         console.error('Error executing the queries:', error);
-//         res.status(500).send('Internal Server Error');
-//     }
-// });
-
 
 // route to dispaly survey
 app.get("/survey", (req, res) => {
