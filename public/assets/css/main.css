@@ -2307,6 +2307,14 @@ tbody tr:hover {
   margin: 20px; /* Adjust the margin as needed */
 }
 
+.grid-container h3{
+  color: black;
+}
+
+.grid-container h3:hover {
+  color: var(--color-primary);
+}
+
 .grid-item {
   width: 200px; /* Adjust the width as needed */
   height: 133px; /* Adjust the height as needed */
@@ -2314,17 +2322,6 @@ tbody tr:hover {
   overflow: hidden; /* Ensure images don't overflow */
   border: 1px solid #ccc; /* Add a border for better visibility */
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Add a box shadow for better visibility */
-}
-
-.image-container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* Adjust the alpha value for opacity */
-  pointer-events: none; /* Ensure the overlay doesn't interfere with clicks */
 }
 
 .grid-item div {
@@ -2335,10 +2332,6 @@ tbody tr:hover {
   padding: 10px;
   color: white;
   font-weight: bold;
-}
-
-.grid-item h3{
-  color: black;
 }
 
 /*----------------------------------

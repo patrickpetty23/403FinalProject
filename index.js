@@ -307,6 +307,17 @@ app.get("/ourteam", (req,res) => {
 
 app.post("/addcustomer", async (req, res) => {
     const { firstname, lastname, email, phone } = req.body;
+    const currentTimestamp = new Date();
+    const targetTimezone = 'en-US';
+    const formattedTimestamp = currentTimestamp.toLocaleString(targetTimezone, {
+    timeZone: 'America/Denver', // Use 'America/Denver' for Mountain Time Zone
+    month: 'numeric',
+    day: '2-digit',
+    year: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    })
 
     try {
         // Insert into the "leads" table
@@ -315,6 +326,7 @@ app.post("/addcustomer", async (req, res) => {
             last_name: lastname,
             email: email,
             phone: phone,
+            date: formattedTimestamp
             // You can add more fields or modify as needed
         });
 
