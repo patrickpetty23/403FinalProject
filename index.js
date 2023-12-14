@@ -56,7 +56,7 @@ app.get("/create", checkLoggedIn, (req, res) => {
     }
 });
 
-app.post('/create', async (req, res) => {
+app.post('/create', checkLoggedIn, async (req, res) => {
     const { username, password, confirmPassword } = req.body;
     let errorMessage = null;
 
@@ -293,7 +293,7 @@ app.get("/edituser", checkLoggedIn, (req, res) => {
 });  
 
 // update user username and password
-app.post("/updateuser", (req, res) => {
+app.post("/updateuser", checkLoggedIn, (req, res) => {
     let currentUsername = req.body.currentUsername;
     let newUsername = req.body.newUsername;
     let newPassword = req.body.newPassword;
@@ -325,7 +325,7 @@ app.post("/updateuser", (req, res) => {
       });
   });   
 
-  app.post("/deleteuser", (req, res) => {
+  app.post("/deleteuser", checkLoggedIn, (req, res) => {
     let deleteUsername = req.body.deleteusername;
     let currentUsername = req.session.username;
 
