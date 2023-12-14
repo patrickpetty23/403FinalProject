@@ -2299,7 +2299,7 @@ tbody tr:hover {
   padding: 2px 8px;
 }
 
-/* Info page */
+/* Services page */
 .grid-container {
   display: flex;
   flex-wrap: wrap;
@@ -2317,7 +2317,7 @@ tbody tr:hover {
 }
 
 .grid-item div {
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   height: 100%;
   text-align: left;
