@@ -58,7 +58,9 @@
           <li><a href="/">Home</a></li>
           <li><a href="/services">Services</a></li>
           <li><a href="#" class="active">Meet the Team</a></li>
-          <li><a href="/data">Data</a></li>
+          <% if (loggedIn) { %>
+            <li><a href="/data">Data</a></li>
+        <% } %>
           <li><a href="/login">Login</a></li>
         </ul>
       </nav><!-- .navbar -->
