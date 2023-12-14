@@ -54,7 +54,12 @@
                     <% if (loggedIn) { %>
                         <li><a href="/data">Data</a></li>
                     <% } %>
-                    <li><a href="/login">Login</a></li>
+                    <% if (loggedIn) { %>
+                        <li><a href="/account">Account</a></li>
+                      <% } %>
+                    <% if (loggedIn) { %>
+                        <li><a href="/logout">Logout</a></li>
+                    <% } else {%> <li><a href="/login">Login</a></li> <%}%> 
                 </ul>
             </nav><!-- .navbar -->
             </div>
@@ -93,36 +98,35 @@
                     <h4><%=events[iCount].title%></h4><br>
                     <p><%=events[iCount].description%></p><br><br>
                     <%}%>
+
+                    <div class="customer-form-container">
+                        <img src="assets/img/OverlyActive.png" alt="Logo" style="height: 100px;">
+                        <h2>Enter Customer Info</h2>
+                        <form action="/addcustomer" method="post" class="two-columns-form" name="addcustomer" id="addcustomer">
+                            <div class="flex-container">
+                                <div class="column">
+                                    <label for="firstname">First Name: <span style="color: red;">*</span></label>
+                                    <input type="text" id="firstname" name="firstname" style="background-color: rgb(270,245,220); width: 75%;" required>
+                            
+                                    <label for="email">Email: <span style="color: red;">*</span></label>
+                                    <input type="text" id="email" name="email" style="background-color: rgb(270,245,220); width: 75%;" required>
+                                </div>
+                                <div class="column">
+                                    <label for="lastname">Last Name: <span style="color: red;">*</span></label>
+                                    <input type="text" id="lastname" name="lastname" style="background-color: rgb(270,245,220); width: 75%;" required>
+                            
+                                    <label for="phone">Phone Number: <span style="color: red;">*</span></label>
+                                    <input type="text" id="phone" name="phone" style="background-color: rgb(270,245,220); width: 75%;" required><br>
+                                </div>
+                            </div>
+                            <div style="text-align: center;">
+                                <input type="submit" value="Submit" class="customer-form-link" style="width: 200%; margin-left: -20px">
+                            </div>
+                        </form>
+                    </div>
                 <%}%>
             </div>
         </div>
-
-        <div class="customer-form-container">
-            <img src="assets/img/OverlyActive.png" alt="Logo" style="height: 100px;">
-            <h2>Enter Customer Info</h2>
-            <form action="/addcustomer" method="post" class="two-columns-form" name="addcustomer" id="addcustomer">
-                <div class="flex-container">
-                    <div class="column">
-                        <label for="firstname">First Name: <span style="color: red;">*</span></label>
-                        <input type="text" id="firstname" name="firstname" style="background-color: rgb(270,245,220); width: 75%;" required>
-                
-                        <label for="email">Email: <span style="color: red;">*</span></label>
-                        <input type="text" id="email" name="email" style="background-color: rgb(270,245,220); width: 75%;" required>
-                    </div>
-                    <div class="column">
-                        <label for="lastname">Last Name: <span style="color: red;">*</span></label>
-                        <input type="text" id="lastname" name="lastname" style="background-color: rgb(270,245,220); width: 75%;" required>
-                
-                        <label for="phone">Phone Number: <span style="color: red;">*</span></label>
-                        <input type="text" id="phone" name="phone" style="background-color: rgb(270,245,220); width: 75%;" required><br>
-                    </div>
-                </div>
-                <div style="text-align: center;">
-                    <input type="submit" value="Submit" class="customer-form-link" style="width: 200%; margin-left: -20px">
-                </div>
-            </form>
-        </div>
-
         <!-- ======= End Content Section ======= -->
         <!-- ======= Footer ======= -->
         <footer id="footer" class="footer">

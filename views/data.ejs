@@ -58,8 +58,13 @@
           <li><a href="/ourteam">Meet the Team</a></li>
           <% if (loggedIn) { %>
             <li><a href="#">Data</a></li>
-        <% } %>
-          <li><a href="/login">Login</a></li>
+          <% } %>
+          <% if (loggedIn) { %>
+            <li><a href="/account">Account</a></li>
+          <% } %>
+          <% if (loggedIn) { %>
+            <li><a href="/logout">Logout</a></li>
+          <% } else {%> <li><a href="/login">Login</a></li> <%}%> 
         </ul>
       </nav><!-- .navbar -->
     </div>
@@ -68,7 +73,6 @@
   <div>
     <!--filter drop down by interest-->
     <form action="/datafiltered" method="get" id="filterform" name="filterform" style="margin: 20px;">
-      <label for="interest" style="color: white;"><b>Interest:</b></label>
       <label for="interest" style="color: white;"><b>Interest:</b></label>
       <select id="interest" name="interest">
           <option>Select an interest</option>

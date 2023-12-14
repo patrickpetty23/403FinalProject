@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Account</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon"> 
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: BizLand
+  * Updated: Sep 18 2023 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/bizland-bootstrap-business-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+<body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="d-flex align-items-center">
+      <div class="container d-flex align-items-center justify-content-between">
+  
+        <h1 class="logo"><a href="/">Overly Musical<span></span></a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt=""></a>-->
+  
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/services" class="active">Services</a></li>
+                <li><a href="/ourteam">Meet the Team</a></li>
+                <% if (loggedIn) { %>
+                    <li><a href="/data">Data</a></li>
+                <% } %>
+                <% if (loggedIn) { %>
+                    <li><a href="/create">Create User</a></li>
+                <% } %>
+                <% if (loggedIn) { %>
+                    <li><a href="/logout">Logout</a></li>
+                <% } else {%> <li><a href="/login">Login</a></li> <%}%> 
+            </ul>
+          <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+  
+      </div>
+    </header>
+    <!-- End Header -->
+
+  <br>
+   
+    <div class="container">
+      <table>
+        <thead>
+          <tr>
+              <th style="text-align: left; width: 33.33%">Username</th>
+              <th style="text-align: left; width: 33.33%">Password</th>
+              <th style="text-align: center; background-color: rgb(0,164,224); width: 33.33%"><% if (loggedIn && loggedInUsername === 'admin') { %>
+                <a href="/create" class="btn btn-primary" style="background-color: white; color: black; border: none">Create User</a>
+              <% } %></th>
+          </tr>
+      </thead>
+        <tbody>
+          <% for (let iCount = 0; iCount < dbUser.length; iCount++) { %>
+            <tr>
+                <td><%= dbUser[iCount].username %></td>
+                <td><%= dbUser[iCount].password %></td>
+                <td style="text-align: center;">
+                    <form action="/edituser" method="GET" style="display: inline;">
+                        <input type="hidden" name="editusername" value="<%= dbUser[iCount].username %>">
+                        <button type="submit" class="btn btn-primary" style="background-color: rgb(0,164,224); border: none">Edit</button>
+                    </form>  
+                    <form action="/deleteuser" method="POST" style="display: inline;">
+                        <input type="hidden" name="deleteusername" value="<%= dbUser[iCount].username %>">
+                        <button type="submit" class="btn btn-primary" style="background-color: rgb(0,164,224); border: none">Delete</button>
+                    </form>
+                </td>
+            </tr>            
+          <% } %>
+     </tbody>
+   </table>
+   </div>
+   <br><br>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Create User</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: BizLand
+  * Updated: Sep 18 2023 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/bizland-bootstrap-business-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+
+</head>
+
+<body style="background-color: #f4f4f4" onload="createMessage()">
+  <!-- ======= Header ======= -->
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+    <a href="/" class="logo d-flex align-items-center">
+        <img src="assets/img/OverlyActive.png" alt="" style="height: 65px;">
+    </a>
+    <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+    <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+    <nav id="navbar" class="navbar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/services" class="active">Services</a></li>
+            <li><a href="/ourteam">Meet the Team</a></li>
+            <% if (loggedIn) { %>
+                <li><a href="/data">Data</a></li>
+            <% } %>
+            <% if (loggedIn) { %>
+                <li><a href="/account">Account</a></li>
+              <% } %>
+            <% if (loggedIn) { %>
+                <li><a href="/logout">Logout</a></li>
+            <% } else {%> <li><a href="/login">Login</a></li> <%}%> 
+        </ul>
+    </nav>
+    <!-- .navbar -->
+    </div>
+    </header>
+    <!-- End Header -->
+
+    <% if (errorMessage) { %>
+        <script>
+            alert("<%= errorMessage %>");
+        </script>
+    <% } %>
+    <div class="customer-form-container">
+        <h2>Create User</h2>
+        <form action="/create" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" onkeyup="check()" required>
+            <label for="confirmPassword">Confirm password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" onkeyup="check()" required>
+            <span id="message"></span><br>
+            <input type="submit" value="Create User" class="logout-link">
+        </form>
+    </div>
+    <script>        
+        function logOut()
+        {
+            window.location.href = '/logout';        
+        }
+        function check() 
+        {
+            if (document.getElementById('password').value == null && document.getElementById('confirmPassword').value == null) {
+                return;
+            } else {
+                if (document.getElementById('password').value === document.getElementById('confirmPassword').value) {
+                    document.getElementById('message').style.color = 'green';
+                    document.getElementById('message').innerHTML = 'Passwords match';
+                } else {
+                    document.getElementById('message').style.color = 'red';
+                    document.getElementById('message').innerHTML = 'Passwords don\'t match';
+                }
+            }
+        }
+        function createMessage() 
+        {
+            if (errorMessage) {
+                alert('<%= errorMessage %>')
+            }
+        }
+    </script>
+</body>
+</html>
