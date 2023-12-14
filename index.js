@@ -401,10 +401,35 @@ app.get("/ourteam", (req,res) => {
     res.render('ourteam', {loggedIn: req.session.loggedIn})
 })
 
-app.post("/addcustomer", (req, res) => {
-    // use req.query.interest to get the interest variable to insert
+// app.post("/addcustomer", async (req, res) => {
+//     // use req.query.interest to get the interest variable to insert
 
-    res.redirect('/services')
-})
+//     await knex('customer').insert({
+       
+//     });
+
+//     res.redirect('/services')
+// })
+
+app.post("/addcustomer", async (req, res) => {
+    const { firstname, lastname, email, phone } = req.body;
+
+    try {
+        // Insert into the "leads" table
+        await knex('leads').insert({
+            first_name: firstname,
+            last_name: lastname,
+            email: email,
+            phone: phone,
+            // You can add more fields or modify as needed
+        });
+
+        // Redirect to the desired page
+        res.redirect('/services');
+    } catch (error) {
+        console.error("Error inserting into the database:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});
 
 app.listen(port, () => console.log("Server is running"));
