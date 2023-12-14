@@ -87,8 +87,8 @@
                         </a>
                     </div>
                 <%} else {%>
-                    <h1><%=interest_display.interest%></h1><br><br>
-                    <img src="assets/img/<%=interest_display.photo%>.jpg" alt="<%=interest_display.photo_description%>" style="width: 50%; height: auto; display: block; margin: 0 auto;"><br><br><br>
+                    <h1><%=interests[0].interest%></h1><br><br>
+                    <img src="assets/img/<%=interests[0].photo%>" alt="<%=interests[0].photo_description%>" style="width: 50%; height: auto; display: block; margin: 0 auto;"><br><br><br>
                     <%for (let iCount=0; iCount<events.length; iCount++) {%>
                     <h4><%=events[iCount].title%></h4><br>
                     <p><%=events[iCount].description%></p><br><br>
