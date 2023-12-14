@@ -260,7 +260,7 @@ app.get("/data", checkLoggedIn, async (req, res) => {
 
         // Render the data.ejs template with the customer data
         res.render("data", {
-            leads: leadData,
+            leadData: leadData,
             uniqueInterest: uniqueInterest,
             loggedIn: req.session.loggedIn
         });
@@ -278,10 +278,7 @@ app.get("/datafiltered", async (req, res) => {
         const leadInterest = req.query.interest;
         
         // Fetch distinct survey numbers (for dropdown)
-        const distinctInterests = await knex('leads').distinct('interest').orderBy('interest');
-
-        // Extract unique interests from the result
-        const dropdownOptions = distinctInterests.map(item => item.interest);
+        const uniqueInterest = await knex.distinct("interest").from("leads");
 
         // Fetch all survey data
         let leadData;
@@ -293,9 +290,9 @@ app.get("/datafiltered", async (req, res) => {
 
         // Render the data.ejs template with the filtered survey data and dropdown options
         res.render("data", {
-            leads: leadData,
+            leadData: leadData,
+            uniqueInterest: uniqueInterest,
             loggedIn: req.session.loggedIn,
-            dropdownOptions: dropdownOptions
         });
     } catch (error) {
         console.error('Error executing the query:', error);

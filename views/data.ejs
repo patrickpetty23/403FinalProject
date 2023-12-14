@@ -76,9 +76,9 @@
       <label for="interest" style="color: white;"><b>Interest:</b></label>
       <select id="interest" name="interest">
           <option>Select an interest</option>
-          <% for (let iCount = 0; iCount < uniqueLeads.length; iCount++) { %>
-              <option value="<%= uniqueLeads[iCount].interest %>">
-              <%= uniqueLeads[iCount].interest %>
+          <% for (let iCount = 0; iCount < uniqueInterest.length; iCount++) { %>
+              <option value="<%= uniqueInterest[iCount].interest %>">
+              <%= uniqueInterest[iCount].interest %>
               </option>
           <% } %>
       </select>
@@ -98,13 +98,13 @@
         </tr>
       </thead>
       <tbody>
-        <% for (let iCount = 0; iCount < leads.length; iCount++) { %>
+        <% for (let iCount = 0; iCount < leadData.length; iCount++) { %>
           <tr>
-            <td><%= leads[iCount].first_name %></td>
-            <td><%= leads[iCount].last_name %></td>
-            <td><%= leads[iCount].phone %></td>
-            <td><%= leads[iCount].email %></td>
-            <td><%= leads[iCount].interest %></td>
+            <td><%= leadData[iCount].first_name %></td>
+            <td><%= leadData[iCount].last_name %></td>
+            <td><%= leadData[iCount].phone %></td>
+            <td><%= leadData[iCount].email %></td>
+            <td><%= leadData[iCount].interest %></td>
           </tr>
         <% } %>
       </tbody>
