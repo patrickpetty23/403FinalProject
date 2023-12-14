@@ -147,10 +147,12 @@
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a href="/">Home</a></li>
-                    <li><a href="/login">Login</a></li>
-                    <li><a href="/customer">Customer Form</a></li>
-                    <li><a href="/services">Information</a></li>
+                    <li><a href="#">Services</a></li>
                     <li><a href="/ourteam">Meet the Team</a></li>
+                    <% if (loggedIn) { %>
+                        <li><a href="/data">Data</a></li>
+                    <% } %>
+                    <li><a href="/login">Login</a></li>
                 </ul>
             </nav><!-- .navbar -->
             </div>
@@ -196,7 +198,7 @@
         <div class="login-container">
             <img src="assets/img/OverlyActive.png" alt="Logo">
             <h2>Enter Customer Info</h2>
-            <form action="/customer" method="post" class="two-columns-form">
+            <form action="/addcustomer" method="post" class="two-columns-form" name="addcustomer" id="addcustomer">
                 <div class="flex-container">
                     <div class="column">
                         <label for="firstname">First Name: <span style="color: red;">*</span></label>
