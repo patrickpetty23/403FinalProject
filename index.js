@@ -256,10 +256,12 @@ app.get("/data", checkLoggedIn, async (req, res) => {
     try {
         // Fetch all customer data
         const leadData = await knex.select().from("leads");
+        const uniqueInterest = await knex.distinct("interest").from("leads");
 
         // Render the data.ejs template with the customer data
         res.render("data", {
             leads: leadData,
+            uniqueInterest: uniqueInterest,
             loggedIn: req.session.loggedIn
         });
     } catch (error) {

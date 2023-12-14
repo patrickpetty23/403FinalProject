@@ -76,9 +76,9 @@
       <label for="interest" style="color: white;"><b>Interest:</b></label>
       <select id="interest" name="interest">
           <option>Select an interest</option>
-          <% for (let iCount = 0; iCount < leads.length; iCount++) { %>
-              <option value="<%= leads[iCount].interest %>">
-              <%= leads[iCount].interest %>
+          <% for (let iCount = 0; iCount < uniqueLeads.length; iCount++) { %>
+              <option value="<%= uniqueLeads[iCount].interest %>">
+              <%= uniqueLeads[iCount].interest %>
               </option>
           <% } %>
       </select>
