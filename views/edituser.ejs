@@ -85,7 +85,7 @@
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: BizLand
@@ -96,38 +96,36 @@
   ======================================================== -->
 </head>
 
-<body style="background-color: #f4f4f4">
-  <!-- ======= Header ======= -->
-  <header id="header" class="d-flex align-items-center">
-    <div class="container d-flex align-items-center justify-content-between">
+<body class="page-index login-body" style="background-color: #1B2F45;">
+    <!-- ======= Header ======= -->
+    <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+        <a href="/" class="logo d-flex align-items-center">
+            <img src="assets/img/OverlyActive.png" alt="" style="height: 65px;">
+        </a>
+        <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+        <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/services">Services</a></li>
+                <li><a href="/ourteam">Meet the Team</a></li>
+                <% if (loggedIn) { %>
+                    <li><a href="/data">Data</a></li>
+                <% } %>
+                <% if (loggedIn) { %>
+                    <li><a href="/account">Account</a></li>
+                  <% } %>
+                <% if (loggedIn) { %>
+                    <li><a href="/logout">Logout</a></li>
+                <% } else {%> <li><a href="/login">Login</a></li> <%}%> 
+            </ul>
+        </nav><!-- .navbar -->
+        </div>
+    </header>
+    <!-- End Header -->
 
-      <h1 class="logo"><a href="landingPage">Social Media & Mental Health<span>.</span></a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt=""></a>-->
-
-      <nav id="navbar" class="navbar">
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/services" class="active">Services</a></li>
-            <li><a href="/ourteam">Meet the Team</a></li>
-            <% if (loggedIn) { %>
-                <li><a href="/data">Data</a></li>
-            <% } %>
-            <% if (loggedIn) { %>
-                <li><a href="/create">Create User</a></li>
-            <% } %>
-            <% if (loggedIn) { %>
-                <li><a href="/logout">Logout</a></li>
-            <% } else {%> <li><a href="/login">Login</a></li> <%}%> 
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-    </div>
-   
-      
-  </header><!-- End Header -->
-
-<body>
+  <br><br><br><br><br><br>
     <div class="login-container">
         <form action="/updateuser" method="POST">
           <label for="currentUsername">Current Username:</label>

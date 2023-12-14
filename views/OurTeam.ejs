@@ -54,15 +54,20 @@
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
 
       <nav id="navbar" class="navbar">
-        <ul>
+      <ul>
           <li><a href="/">Home</a></li>
           <li><a href="/services">Services</a></li>
           <li><a href="#" class="active">Meet the Team</a></li>
           <% if (loggedIn) { %>
-            <li><a href="/data">Data</a></li>
-        <% } %>
-          <li><a href="/login">Login</a></li>
-        </ul>
+              <li><a href="/data">Data</a></li>
+          <% } %>
+          <% if (loggedIn) { %>
+              <li><a href="/account">Account</a></li>
+            <% } %>
+          <% if (loggedIn) { %>
+              <li><a href="/logout">Logout</a></li>
+          <% } else {%> <li><a href="/login">Login</a></li> <%}%> 
+      </ul>
       </nav><!-- .navbar -->
 
     </div>
