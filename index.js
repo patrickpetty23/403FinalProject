@@ -106,16 +106,29 @@ app.post("/contact", (req, res) => {
 app.get("/services", async (req,res) => {
     try {
         let selected_interest = null;
-        let interest_display = null;
+        let interests = null;
         let events = null;
         if (req.query.interest) {
             selected_interest = req.query.interest;
+            let interest_id = null;
+            if (selected_interest == "youngchildren") {
+                interest_id = 1;
+            } else if (selected_interest == "youth") {
+                interest_id = 2;
+            } else if (selected_interest == "elderly") {
+                interest_id = 3;
+            } else if (selected_interest == "specialneeds") {
+                interest_id = 4;
+            } else {
+                res.send("It didn't work");
+            }
             console.log("selected_interest: ", selected_interest);
-            interest_display = await knex('interests').select().where('interest', '=', selected_interest);
-            events = await knex('events').select().where('interest', '=', selected_interest);
+            console.log("interest_id: ", interest_id);
+            interests = await knex('interests').select().where('interest_id', '=', interest_id);
+            events = await knex('events').select().where('interest_id', '=', interest_id);
         }
         // Render the "services" template with the retrieved data
-        res.render("services", { loggedIn: req.session.loggedIn, interest_display: interest_display, events: events, selected_interest: selected_interest });
+        res.render("services", { loggedIn: req.session.loggedIn, interests: interests, events: events, selected_interest: selected_interest });
     } catch (error) {
         console.error('Error executing the queries:', error);
         res.status(500).send('Internal Server Error');
