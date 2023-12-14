@@ -306,7 +306,7 @@ app.get("/ourteam", (req,res) => {
 })
 
 app.post("/addcustomer", async (req, res) => {
-    const { firstname, lastname, email, phone } = req.body;
+    const { firstname, lastname, email, phone, interest } = req.body;
     const currentTimestamp = new Date();
     const targetTimezone = 'en-US';
     const formattedTimestamp = currentTimestamp.toLocaleString(targetTimezone, {
@@ -326,6 +326,7 @@ app.post("/addcustomer", async (req, res) => {
             last_name: lastname,
             email: email,
             phone: phone,
+            interest: interest,
             date: formattedTimestamp
             // You can add more fields or modify as needed
         });
