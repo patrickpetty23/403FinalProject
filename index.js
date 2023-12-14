@@ -420,7 +420,7 @@ app.post("/addcustomer", async (req, res) => {
             first_name: firstname,
             last_name: lastname,
             email: email,
-            phone: phone,
+            phone: phone
             // You can add more fields or modify as needed
         });
 
