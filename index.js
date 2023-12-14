@@ -402,7 +402,7 @@ app.get("/ourteam", (req,res) => {
 })
 
 app.post("/addcustomer", (req, res) => {
-
+    // use req.query.interest to get the interest variable to insert
 
     res.redirect('/services')
 })
